@@ -8,7 +8,8 @@ import './App.css'
 
 function App() {
   return (
-    <>
+    <div>
+
       <main>
         <Routes>
           
@@ -19,7 +20,7 @@ function App() {
           <Route path="*" element={<div>Custom 404 Page Content</div>} />
         </Routes>
       </main>
-    </>
+    </div>
   );
 }
 
