@@ -29,52 +29,52 @@ function Home() {
       }}>
       
           <div> 
-              <h3 style={{ fontSize: '1.5rem', fontWeight: '600', marginBottom: '1rem' }}>Data Visualization Dashboard</h3>
-              {/* Placeholder Image (You will replace this URL with your project's image) */}
+              <h3 style={{ fontSize: '1.5rem', fontWeight: '600', marginBottom: '1rem' }}>Smoothed Particle Hydrodynamics Implementation in Houdini</h3>
               <img 
-                  src="/assets/redsequence.png" 
+                  src="https://raw.githubusercontent.com/CaiaG/caiaWebsite/168e6f10184f02302ad51bb1399ba68bc9acca85/src/assets/redsequence.jpg" 
                   style={{ 
                       maxWidth: '100%', 
                       height: 'auto', 
-                      borderRadius: '6px',
+                      borderRadius: '3px',
                       boxShadow: '0 2px 4px rgba(0,0,0,0.1)' 
                   }}
               />
           </div>
 
-          {/* B. PROJECT DESCRIPTION AND DETAILS */}
           <div>
               {/* Description */}
-              <p style={{ lineHeight: '1.6', marginBottom: '1rem' }}>
-                  bee boo
+              <p style={{ lineHeight: '1', marginBottom: '0.5rem' }}>
+                  Custom SPH solver with pressure, viscosity, and surface tension 
+              </p>
+              <p style={{ lineHeight: '1', marginBottom: '0.5rem' }}>
+                  Supports 3K+ particles at 30 FPS
+              </p><p style={{ lineHeight: '1', marginBottom: '0.5rem' }}>
+                  Applies XSPH smoothing, hybrid pressure solvers, and dynamic time stepping for stability
               </p>
 
-              {/* Technologies List */}
-              <div style={{ marginBottom: '1rem' }}>
-                  <strong style={{ display: 'block', marginBottom: '0.5rem' }}>Technologies Used:</strong>
-                  <ul style={{ listStyleType: 'disc', marginLeft: '20px' }}>
-                      <li>**Frontend:** React, D3.js (for custom charts)</li>
-                      <li>**Styling:** Tailwind CSS (for layout and utilities)</li>
-                      <li>**State:** Zustand</li>
-                      <li>**APIs:** Mock Service Worker (MSW)</li>
-                  </ul>
-              </div>
-
               {/* Links */}
-              <div>
-                  <a href="#" style={{ 
+              <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '0.5rem' }}>
+                  <a href="https://github.com/CaiaG/SPHFluidSimulation-in-Houdini" style={{ 
                       color: '#1E40AF', 
                       fontWeight: 'bold',
                       textDecoration: 'none', 
-                      marginRight: '1rem' 
                   }}>
-                      View Live Demo &rarr;
+                    Code{' '}|
                   </a>
-                  <a href="#" style={{ 
-                      color: '#6B7280', 
-                      textDecoration: 'underline' 
+                  <a href="https://docs.google.com/presentation/d/16x6bA4EYJor1JWqmlA5Iz0BD-3cVK-eLnIrsPnyrGdA/edit?usp=sharing" style={{ 
+                      color: '#1E40AF', 
+                      fontWeight: 'bold',
+                      textDecoration: 'none', 
                   }}>
-                      View Code on GitHub
+                    Presentation{' '}|
+                  </a>
+                  
+                  <a href="https://raw.githubusercontent.com/CaiaG/caiaWebsite/168e6f10184f02302ad51bb1399ba68bc9acca85/src/assets/ProjectSpecificationGuideFinalDraft.pdf" style={{ 
+                      color: '#1E40AF', 
+                      fontWeight: 'bold',
+                      textDecoration: 'none', 
+                  }}>
+                    Writeup
                   </a>
               </div>
           </div>
