@@ -76,7 +76,7 @@ function Home() {
       {/* 2. ABOUT SECTION*/}
 
       <h2>Software Engineering | Computer Graphics</h2>
-      <p style={{margin: '1rem', marginInlineStart: '20rem', marginInlineEnd: '20rem'}}>I graduated from the University of Pennsylvania with a BSE in Digital Media Design. I am currently exploring software engineer roles that cater to my interests in simulation and graphics!</p>
+      <p style={{margin: '1rem', marginInlineStart: '10rem', marginInlineEnd: '10rem'}}>I graduated from the University of Pennsylvania with a BSE in Digital Media Design. I am currently exploring software engineer roles that cater to my interests in simulation and graphics!</p>
 
       
       {/* 3. FEATURED PROJECTS */}
