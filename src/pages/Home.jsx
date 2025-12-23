@@ -63,7 +63,7 @@ function Home() {
     padding: '4rem 2rem',
     borderBottom: '1px solid #e5e7eb',
     textAlign: 'left',
-    color: '#ffffffff'
+    color: '#fdf9d2ff'
   };
 
   // abandoning the grid
