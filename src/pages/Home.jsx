@@ -1,4 +1,70 @@
+import React, {useRef, useState, useEffect} from 'react';
 function Home() {
+    const scrollRef = useRef(null);
+    const [isDragging, setDragging] = useState(false);
+    // const [startX, setStartX] = useState(0);
+    // const [scrollLeft, setScrollLeft] = useState(0);
+
+    /// make drag smooooother
+    const dragInfo = useRef({
+        startX: 0,
+        scrollLeft: 0,
+        velocity: 0,
+        lastX: 0,
+        rafId: null
+    })
+
+    const handleMouseDown = (e) => {
+
+        if (e.target.tagName === 'A') return;
+        e.preventDefault();
+        setDragging(true);
+
+        cancelAnimationFrame(dragInfo.current.rafId);
+
+        dragInfo.current.startX = e.pageX - scrollRef.current.offsetLeft;
+        dragInfo.current.scrollLeft = scrollRef.current.scrollLeft;
+        dragInfo.current.lastX = e.pageX;
+        dragInfo.current.velocity = 0;
+        ;
+    }
+
+
+    const handleMouseMove = (e) => {
+        if (!isDragging) return;
+
+        e.preventDefault();
+
+        const x = e.pageX - scrollRef.current.offsetLeft;
+        const walk = (x - dragInfo.current.startX) * 1.5;
+
+        dragInfo.current.velocity = e.pageX - dragInfo.current.lastX;
+        dragInfo.current.lastX = e.pageX;
+
+        scrollRef.current.scrollLeft = dragInfo.current.scrollLeft - walk;
+    }
+
+    const smoothMotion = () => {
+        if (Math.abs(dragInfo.current.velocity) > 0.01) {
+            scrollRef.current.scrollLeft -= dragInfo.current.velocity * 15;
+            dragInfo.current.velocity *= 0.95;
+            dragInfo.current.rafId = requestAnimationFrame(smoothMotion);
+        }
+    }
+
+    const handleMouseLeave = () => {
+        setDragging(false);
+        smoothMotion();
+    }
+
+    const handleMouseUp = () => {
+        setDragging(false);
+        smoothMotion();
+    }
+
+    useEffect(() => {
+        return () => cancelAnimationFrame(dragInfo.current.rafId);
+    }, []);
 
 
   const projectCardStyle = {
@@ -72,7 +138,9 @@ function Home() {
       overflowX: 'auto',
       gap: '2rem',
       padding: '10px 5px 30px 5px',
-      scrollSnapType: 'x mandatory',
+      scrollSnapType: 'none',
+      cursor: isDragging ? 'grabbing' : 'grab',
+      scrollBehavior: 'auto',
       WebkitOverflowScrolling: 'touch',
       scrollbarWidth: 'none',
       msOverflowStyle: 'none',
@@ -90,13 +158,18 @@ function Home() {
   
   
   
-  // STARTS
+// STARTS
   
+//    body, html { 
+//                     margin: 0; 
+//                     font-family: 'Inter', -apple-system, sans-serif; 
+//                     background: #fdf9d2; 
+//                 }
   
   return (
     <>
       <style>{`
-        body, html { margin: 0; background-color:#2d728f; }
+        body, html { margin: 0; background-color: #2d728f; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
 
         .project-card {
@@ -148,10 +221,20 @@ function Home() {
       
       {/* 3. FEATURED PROJECTS */}
       <div style={dividerStyle}></div>
-      <h2> Featured Projects </h2>
+      <h2 style={{color: '#1e4d61', fontSize: '2rem', fontWeight: '700', marginBottom: '3rem', marginTop: '3rem'}}> Featured Projects </h2>
 
       {/* === SPH PROJECT === */}      
-      <div style={horizontalScrollContainer}>
+      <div
+       style={horizontalScrollContainer}
+       className="no-scrollbar"
+       ref = {scrollRef}
+       onMouseDown={handleMouseDown}
+       onMouseLeave={handleMouseLeave}
+       onMouseUp={handleMouseUp}
+       onMouseMove={handleMouseMove}
+       >
+
+
         <div className="project-card" style={{...projectCardStyle, border: '1px solid #2d728f'}}>
             <div> 
               <img 
@@ -327,8 +410,7 @@ function Home() {
 
       {/* 6. EXPERIENCE */}
       <div style={dividerStyle}></div>
-      <h2>Experience</h2>
-
+      <h2 style={{color: '#1e4d61', fontSize: '2rem', fontWeight: '700', marginBottom: '3rem', marginTop: '3rem'}}>Experience</h2>
 
       {/* === JOB ENTRY A === */}
       <div style={jobEntryStyle}>
@@ -387,7 +469,7 @@ function Home() {
       <div style={dividerStyle}></div>
 
       {/* 8. CONTACT */}
-      <h2>Contact</h2>
+      <h2 style={{color: '#1e4d61', fontSize: '2rem', fontWeight: '700', marginBottom: '1rem', marginTop: '3rem'}}>Contact</h2>
       <a>caiaygelli@gmail.com</a>
       <div style={{justifyContent: 'center'}}>
                     <a href="https://www.linkedin.com/in/caia-gelli-14b6a3225/" style={{ 
@@ -408,7 +490,7 @@ function Home() {
                     </a>
                 </div>
                 
-    </div>
+        </div>
     </>
   );
 }
