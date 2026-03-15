@@ -308,6 +308,34 @@ function Home() {
             </div>
         </div>
 
+        {/* === Virtual Assistant === */} 
+        <div className="project-card" style={{...projectCardStyle, border: '1px solid #2d728f'}}>
+    
+            <div style={{ textAlign:  'center' }}> 
+              <img 
+                  src="https://raw.githubusercontent.com/CaiaG/caiaWebsite/main/src/assets/IMG_9258.JPEG" 
+                  style={{ width: '100%', aspectRatio: '16/10', objectFit: 'cover', borderRadius: '8px', marginBottom: '1rem' }}
+              />
+              <h3 style={{ fontSize: '1.2rem', fontWeight: '600', marginBottom: '1rem' ,textAlign: 'left'}}>Virtual Assistant for OR Planner</h3>
+                {/* Description */}
+                <p style={{ fontSize: '1rem', color: '#1f2734ff', flexGrow: 1, lineHeight: '1.2',  textAlign: 'left', margin: '0 0 0.5rem 0' }}>
+                    Prototype for the assistant of an Operation Room planning application made in Unreal Engine. Integrates Convai and Kokoro (via FastAPI) for real time voice interaction and character animation. Demoed on virtual production stage.
+
+                </p>
+
+                {/* Links */}
+                <div style={{ display: 'flex', justifyContent: 'left', flexWrap: 'wrap', gap: '0.5rem', fontSize: '0.9rem'}}>
+                    <a href="https://github.com/CaiaG/TTSandASRforVirtualAssistantProject" style={{ 
+                        color: '#1e3158ff', 
+                        fontWeight: 'bold',
+                        textDecoration: 'none', 
+                    }}>
+                        Code & Demo
+                    </a>
+                </div>
+            </div>
+        </div>
+
         {/* === Working Search engine === */} 
         <div className="project-card" style={{...projectCardStyle, border: '1px solid #2d728f'}}>
             <div style={{ ...techPlaceholderBase, background: '#0f172a', color: '#38bdf8' }}>
