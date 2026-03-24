@@ -1,5 +1,3 @@
-# Status: empty lol
-
 
 # React + Vite
 
