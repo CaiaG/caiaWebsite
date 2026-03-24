@@ -14,6 +14,7 @@ function Home() {
         rafId: null
     })
 
+
     const handleMouseDown = (e) => {
 
         if (e.target.tagName === 'A') return;
@@ -63,9 +64,30 @@ function Home() {
     }
 
     useEffect(() => {
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal-visible');
+                }
+            });
+        }, observerOptions);
+
+        const revealElements = document.querySelectorAll('.reveal');
+        revealElements.forEach(el => observer.observe(el));
+
+        return () => observer.disconnect();
+    }, []);
+
+    useEffect(() => {
         return () => cancelAnimationFrame(dragInfo.current.rafId);
     }, []);
 
+    
 
   const projectCardStyle = {
       minWidth: '380px',
@@ -146,6 +168,25 @@ function Home() {
       msOverflowStyle: 'none',
   };
 
+  const svgPattern = `
+    <svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%'>
+      <rect fill='%23ffffff' width='24' height='24'/>
+      <defs>
+        <linearGradient id='a' x1='0' x2='0' y1='0' y2='1'>
+          <stop offset='0' stop-color='%232d728f'/>
+          <stop offset='1' stop-color='%23244F67'/>
+        </linearGradient>
+      </defs>
+      <pattern id='b' width='18' height='15' patternUnits='userSpaceOnUse'>
+        <circle fill='%23ffffff' cx='9' cy='9' r='9'/>
+      </pattern>
+      <rect width='100%' height='100%' fill='url(%23a)'/>
+      <rect width='100%' height='100%' fill='url(%23b)' fill-opacity='0.04'/>
+    </svg>
+  `;
+    const encodedDataUri = `url("data:image/svg+xml;utf8,${svgPattern.replace(/\n/g, '').replace(/\s+/g, ' ')}")`;
+
+
 
   const jobEntryStyle = { marginBottom: '2rem', paddingBottom: '1rem', borderBottom: '1px solid #2D728F', textAlign: 'left' };
   const headerStyle = { display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', flexWrap: 'wrap' };
@@ -167,10 +208,19 @@ function Home() {
 //                 }
   
   return (
-    <>
+    <div>
+    {/* change bg here */}
       <style>{`
-        body, html { margin: 0; background-color: #2d728f; }
+        body, html { 
+          margin: 0; 
+          background-image: ${encodedDataUri};
+          background-attachment: fixed;
+          background-size: cover;
+          background-color: #2d728f; 
+        }
+
         .no-scrollbar::-webkit-scrollbar { display: none; }
+
 
         .project-card {
             border-radius: 20px;
@@ -186,12 +236,31 @@ function Home() {
             background-color: #347d92;
             border-radius: 20px !important;
         }
+
+        h1 { margin-top: 0; }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .reveal-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+
       `}</style>
       
-      <div style={heroSectionStyle}>
+
+    <div style={{color: 'black' , backgroundColor: '#2d728f', minHeight: '100vh', padding: '2rem', boxShadow: '0 30px 30px rgba(0, 0, 0, 0.2)' 
+}}>
+
+        <div style={heroSectionStyle}>
         {/* main title*/}
-        <h1>Caia Gelli</h1>
-        <div>
+
+        <h1 style={{fontSize: '6rem'}}>Caia Gelli</h1>
+        <div style={{fontSize: '1rem'}}>
             <a href="https://www.linkedin.com/in/caia-gelli-14b6a3225/" style={{ 
                         color: '#1e3158ff', 
                         fontWeight: 'bold',
@@ -209,14 +278,12 @@ function Home() {
             {/* 2. ABOUT SECTION*/}
 
             <h2>Software Engineering | Computer Graphics</h2>
-            <p>I graduated from the University of Pennsylvania with a BSE in Digital Media Design. I am currently exploring software engineer roles that cater to my interests in simulation and graphics!</p>
+            <p>I graduated from the University of Pennsylvania with a BSE in Digital Media Design. I am currently exploring roles that cater to my interests in simulation and 3D graphics!</p>
 
         </div>
         
       </div>
-
-      
-    <div style={{color: 'black' , backgroundColor: '#fdf9d2ff', minHeight: '100vh', padding: '1rem'}}>
+        <div style={{color: 'black' , backgroundColor: '#fdf9d2ff', minHeight: '100vh', padding: '1rem'}}>
       
       
       {/* 3. FEATURED PROJECTS */}
@@ -303,6 +370,36 @@ function Home() {
                         textDecoration: 'none', 
                     }}>
                         Portfolio
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        
+        {/* === Dragon's Blood Tree === */} 
+        <div className="project-card" style={{...projectCardStyle, border: '1px solid #2d728f'}}>
+    
+            <div style={{ textAlign:  'center' }}> 
+              <img 
+                  src="https://raw.githubusercontent.com/CaiaG/caiaWebsite/main/src/assets/treerev1.png" 
+                  style={{ width: '100%', aspectRatio: '16/10', objectFit: 'cover', borderRadius: '8px', marginBottom: '1rem' }}
+              />
+              <h3 style={{ fontSize: '1.2rem', fontWeight: '600', marginBottom: '1rem' ,textAlign: 'left'}}>Dragon's Blood Tree Kit (in progress) </h3>
+                {/* Description */}
+                <p style={{ fontSize: '1rem', color: '#1f2734ff', flexGrow: 1, lineHeight: '1.2',  textAlign: 'left', margin: '0 0 0.5rem 0' }}>
+                    Procedural modular foliage kit for a dragon's blood tree, synthesized in Unreal Engine and experimenting with different techniques to optimize performance. 
+                    Uses an L system branching algorithm to replicate the unique branching pattern and umbrella shape canopy of the tree. 
+
+                </p>
+
+                {/* Links */}
+                <div style={{ display: 'flex', justifyContent: 'left', flexWrap: 'wrap', gap: '0.5rem', fontSize: '0.9rem'}}>
+                    <a href="https://app.milanote.com/1W3ZZU1Qvua02H/dragon-tree?p=m441fkw92yV" style={{ 
+                        color: '#1e3158ff', 
+                        fontWeight: 'bold',
+                        textDecoration: 'none', 
+                    }}>
+                        Progress Board
                     </a>
                 </div>
             </div>
@@ -519,7 +616,17 @@ function Home() {
                 </div>
                 
         </div>
-    </>
+    </div>
+
+       <a href="https://www.svgbackgrounds.com/set/free-svg-backgrounds-and-patterns/" style={{ 
+                        color: '#1e3158ff', 
+                        fontWeight: '200',
+                        textDecoration: 'none',
+                        fontSize: '0.5rem',
+                    }}>Free SVG Backgrounds and Patterns by SVGBackgrounds.com</a>
+    
+    </div>
+
   );
 }
 
