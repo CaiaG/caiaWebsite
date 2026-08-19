@@ -121,7 +121,7 @@ function Home() {
     maxWidth: '360px',
     flexShrink: 0,
     padding: '1.25rem',
-    borderRadius: '16px',
+    borderRadius: '14px',
     backgroundColor: '#3B8EA5',
     display: 'flex',
     flexDirection: 'column',
@@ -137,7 +137,7 @@ function Home() {
     display: 'flex',
     overflowX: 'auto',
     gap: '1.5rem',
-    padding: '1.5rem 0 1.5rem 0',
+    padding: '1.5rem 0.5rem 1.5rem 0.5rem',
     cursor: isDragging ? 'grabbing' : 'grab',
     WebkitOverflowScrolling: 'touch',
     scrollbarWidth: 'none',
@@ -286,14 +286,15 @@ function Home() {
         .no-scrollbar::-webkit-scrollbar { display: none; }
 
         .project-card {
-          border-radius: 16px;
+          border-radius: 14px;
           transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
         }
 
         .project-card:hover { 
-          transform: translateY(-6px);
+          transform: translateY(-6px) scale(1.02) !important;
           box-shadow: 0 0 25px rgba(41, 135, 160, 0.6) !important;
           background-color: #51a4bb !important;
+          border-radius: 25px !important;
         }
 
         .reveal {
