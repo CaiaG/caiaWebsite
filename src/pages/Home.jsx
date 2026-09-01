@@ -329,11 +329,13 @@ function Home() {
                 </a>
                 </div>
 
-                <h2 style={heroSubtitleStyle}>Software Engineering | Computer Graphics</h2>
+                <h2 style={heroSubtitleStyle}>Real-Time 3D Graphics Engineer & Technical Artist | C++, Unreal Engine, Gameplay Design | Prototyping & Pipeline</h2>
                 <p style={{ fontSize: '1.05rem', lineHeight: '1.6', maxWidth: '750px', margin: '0.5rem 0 0 0' }}>
-                Penn DMD graduate bridging C++ software development with 3D production pipelines. 
-                Specializing in real-time rendering, custom shaders, and procedural texturing—open 
-                to Graphics Software Engineering, Technical Art, and Shading/LookDev roles.
+               Real-time 3D graphics engineer & technical artist with a passion for games and animation. Interests include rendering, tool prototyping, 
+               environmental storytelling, and interactive mechanics. I enjoy building artist-facing toolsets, 
+               PBR material graphs, custom shaders and procedural terrain systems in Unreal Engine and Houdini. 
+               My experience includes writing procedural generation algorithms in C++, building automated asset pipelines, 
+               and developing low-level C++ and GLSL graphics systems.
                 </p>
             </div>
             </div>
