@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { Routes, Route } from 'react-router-dom';
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+
 import Home from './pages/Home.jsx';
+import CGProjects from './pages/CGProjects.jsx';
 
 import './App.css'
 
@@ -16,7 +16,7 @@ function App() {
           <Route path="/" 
                  element={<Home />} 
           />
-          
+          <Route path="/CGProjects" element={<CGProjects />} />
           <Route path="*" element={<div>Custom 404 Page Content</div>} />
         </Routes>
       </main>

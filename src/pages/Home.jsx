@@ -1,17 +1,21 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect} from 'react';
+import { useNavigate } from 'react-router-dom';
 import HeroBackground from '../components/HeroBackground';
 
 function Home() {
   const scrollRef = useRef(null);
   const [isDragging, setDragging] = useState(false);
+  const navigate = useNavigate();
 
   const dragInfo = useRef({
     startX: 0,
     scrollLeft: 0,
     velocity: 0,
     lastX: 0,
+    dragDistance: 0, 
     rafId: null,
   });
+  
 
   const handleMouseDown = (e) => {
     if (e.target.tagName === 'A') return;
@@ -24,6 +28,7 @@ function Home() {
     dragInfo.current.scrollLeft = scrollRef.current.scrollLeft;
     dragInfo.current.lastX = e.pageX;
     dragInfo.current.velocity = 0;
+    dragInfo.current.dragDistance = 0;
   };
 
   const handleMouseMove = (e) => {
@@ -33,10 +38,19 @@ function Home() {
     const x = e.pageX - scrollRef.current.offsetLeft;
     const walk = (x - dragInfo.current.startX) * 1.5;
 
+    const delta = Math.abs(e.pageX - dragInfo.current.lastX);
+    dragInfo.current.dragDistance += delta;
+
     dragInfo.current.velocity = e.pageX - dragInfo.current.lastX;
     dragInfo.current.lastX = e.pageX;
 
     scrollRef.current.scrollLeft = dragInfo.current.scrollLeft - walk;
+  };
+
+  const handleCardClick = (path) => {
+    if (dragInfo.current.dragDistance < 5) {
+      navigate(path);
+    }
   };
 
   const smoothMotion = () => {
@@ -359,6 +373,31 @@ function Home() {
                 onMouseMove={handleMouseMove}
             >
                 {/* Project 1 */}
+                <div 
+                className="project-card" 
+                style={{ ...projectCardStyle, cursor: 'pointer' }}
+                onClick={() => handleCardClick('/CGProjects')}
+                >                <img
+                    src="https://raw.githubusercontent.com/CaiaG/caiaWebsite/main/src/assets/caia-gelli-sdfyoshi%20(1).jpg"
+                    alt="Interactive Computer Graphics"
+                    style={{ width: '100%', aspectRatio: '16/10', objectFit: 'cover', borderRadius: '8px', marginBottom: '1rem' }}
+                />
+                <h3 style={{ fontSize: '1.15rem', fontWeight: '600', margin: '0 0 0.5rem 0', textAlign: 'left', color: '#0F172A' }}>
+                    Interactive Computer Graphics
+                </h3>
+                <p style={{ fontSize: '0.98 rem', color: '#1f2734ff', flexGrow: 1, lineHeight: '1.4', textAlign: 'left', margin: '0 0 1rem 0' }}>
+                    Portfolio including: Mini Minecraft using C++ and OpenGL (procedural terrain, texturing and L-system implementations), Rasterizer in OpenGL & Ray/Path tracer using Monte Carlo approximation, 3D Modeling, etc.
+                </p>
+                <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap', marginBottom: '1rem' }}>
+                    <span style={techTagStyle}>C++</span>
+                    <span style={techTagStyle}>GLSL</span>
+                </div>
+                <div style={{ display: 'flex', gap: '0.75rem', fontSize: '0.85rem' }}>
+                    <a href="https://www.artstation.com/caiagelli9" style={linkStyle}>Portfolio</a>
+                </div>
+                </div>
+
+                {/* Project 2 */}
                 <div className="project-card" style={projectCardStyle}>
                 <img
                     src="https://raw.githubusercontent.com/CaiaG/caiaWebsite/168e6f10184f02302ad51bb1399ba68bc9acca85/src/assets/redsequence.jpg"
@@ -385,27 +424,7 @@ function Home() {
                 </div>
                 </div>
 
-                {/* Project 2 */}
-                <div className="project-card" style={projectCardStyle}>
-                <img
-                    src="https://raw.githubusercontent.com/CaiaG/caiaWebsite/main/src/assets/caia-gelli-sdfyoshi%20(1).jpg"
-                    alt="Interactive Computer Graphics"
-                    style={{ width: '100%', aspectRatio: '16/10', objectFit: 'cover', borderRadius: '8px', marginBottom: '1rem' }}
-                />
-                <h3 style={{ fontSize: '1.15rem', fontWeight: '600', margin: '0 0 0.5rem 0', textAlign: 'left', color: '#0F172A' }}>
-                    Interactive Computer Graphics
-                </h3>
-                <p style={{ fontSize: '0.98 rem', color: '#1f2734ff', flexGrow: 1, lineHeight: '1.4', textAlign: 'left', margin: '0 0 1rem 0' }}>
-                    Portfolio including: Mini Minecraft using C++ and OpenGL (procedural terrain, texturing and L-system implementations), Rasterizer in OpenGL & Ray/Path tracer using Monte Carlo approximation, 3D Modeling, etc.
-                </p>
-                <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap', marginBottom: '1rem' }}>
-                    <span style={techTagStyle}>C++</span>
-                    <span style={techTagStyle}>GLSL</span>
-                </div>
-                <div style={{ display: 'flex', gap: '0.75rem', fontSize: '0.85rem' }}>
-                    <a href="https://www.artstation.com/caiagelli9" style={linkStyle}>Portfolio</a>
-                </div>
-                </div>
+                
 
                 {/* Project 3 */}
                 <div className="project-card" style={projectCardStyle}>
@@ -479,7 +498,7 @@ function Home() {
                     <span style={techTagStyle}>React</span>
                 </div>
                 <div style={{ display: 'flex', gap: '0.75rem', fontSize: '0.85rem' }}>
-                    <a href="https://github.com/CaiaG/Optaimeal-Prototype/tree/dev" style={linkStyle}>Github</a>
+                    <a href="https://github.com/CaiaG/Optaimeal-Prototype/tree/dev" style={linkStyle}>Code</a>
                 </div>
                 </div>
 
