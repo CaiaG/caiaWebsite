@@ -148,6 +148,15 @@ function CGProjects() {
       videoSrc: "https://raw.githubusercontent.com/CaiaG/caiaWebsite/main/src/assets/wadasahder.mp4"
     },
     {
+      id: 16,
+      title: "Procedural Erosion & Weathering System",
+      year: "'26",
+      description: "Houdini system prototyping noise-based weathering and surface erosion to simulate dust accumulation and natural weathering on 3D assets.",
+      tags: ["HOUDINI", "VEX", "PROCEDURAL"],
+      label: "PROCEDURAL EROSION",
+      img: "https://raw.githubusercontent.com/CaiaG/caiaWebsite/5b4e4f27a758f42e7e6a7e4be296d8ca987a6e70/src/assets/pig3.png"
+    },
+    {
       id: 14,
       title: "C++ Software Rasterizer",
       year: "'24",
@@ -232,19 +241,7 @@ function CGProjects() {
       label: "3D CAVE SCENE",
       img: "https://raw.githubusercontent.com/CaiaG/caiaWebsite/main/src/assets/caia_gelli_EV_01.jpg"
     },
-
     // --- TIER 5: WORK IN PROGRESS ---
-    {
-      id: 16,
-      title: "Procedural Erosion in Houdini",
-      year: "'26",
-      isWip: true,
-      description: "In-progress Houdini system prototyping noise-based weathering and volume erosion to simulate dust accumulation and natural weathering on 3D assets.",
-      tags: ["HOUDINI", "VEX", "PROCEDURAL", "WIP"],
-      label: "PROCEDURAL EROSION",
-      img: null
-    },
-    
   ];
 
   const pageContainerStyle = {

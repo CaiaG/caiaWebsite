@@ -413,7 +413,6 @@ function Home() {
                 <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap', marginBottom: '1rem' }}>
                     <span style={techTagStyle}>HOUDINI</span>
                     <span style={techTagStyle}>VEX</span>
-                    <span style={techTagStyle}>C++</span>
                 </div>
                 <div style={{ display: 'flex', gap: '0.75rem', fontSize: '0.85rem' }}>
                     <a href="https://github.com/CaiaG/SPHFluidSimulation-in-Houdini" style={linkStyle}>Code</a>
@@ -423,8 +422,6 @@ function Home() {
                     <a href="https://raw.githubusercontent.com/CaiaG/caiaWebsite/168e6f10184f02302ad51bb1399ba68bc9acca85/src/assets/ProjectSpecificationGuideFinalDraft.pdf" style={linkStyle}>Writeup</a>
                 </div>
                 </div>
-
-                
 
                 {/* Project 3 */}
                 <div className="project-card" style={projectCardStyle}>
@@ -446,6 +443,29 @@ function Home() {
                 </div>
                 <div style={{ display: 'flex', gap: '0.75rem', fontSize: '0.85rem' }}>
                     <a href="https://app.milanote.com/1W3ZZU1Qvua02H/dragon-tree?p=m441fkw92yV" style={linkStyle}>Progress Board</a>
+                </div>
+                </div>
+
+                {/* Project 3.5 */}
+                <div className="project-card" style={projectCardStyle}>
+                <img
+                    src="https://raw.githubusercontent.com/CaiaG/caiaWebsite/5b4e4f27a758f42e7e6a7e4be296d8ca987a6e70/src/assets/pig3.png"
+                    alt="Dragon's Blood Tree Kit"
+                    style={{ width: '100%', aspectRatio: '16/10', objectFit: 'cover', borderRadius: '8px', marginBottom: '1rem' }}
+                />
+                <h3 style={{ fontSize: '1.15rem', fontWeight: '600', margin: '0 0 0.5rem 0', textAlign: 'left', color: '#0F172A' }}>
+                    Procedural Erosion & Weathering System (Houdini/VEX)
+                </h3>
+                <p style={{ fontSize: '0.98 rem', color: '#1f2734ff', flexGrow: 1, lineHeight: '1.4', textAlign: 'left', margin: '0 0 1rem 0' }}>
+                    Procedural weathering system that uses curvature, occlusion, and surface orientation to drive erosion and
+                    dirt/dust accumulation directly on polygon geometry.
+                </p>
+                <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap', marginBottom: '1rem' }}>
+                    <span style={techTagStyle}>Houdini</span>
+                    <span style={techTagStyle}>VEX</span>
+                </div>
+                <div style={{ display: 'flex', gap: '0.75rem', fontSize: '0.85rem' }}>
+                    <a href="https://app.milanote.com/1X9rnD109ulCdD?p=qvqugbdR6DK" style={linkStyle}>Project Board</a>
                 </div>
                 </div>
 
